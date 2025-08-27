@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas - Build Strength, Build Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: radial-gradient(ellipse at center, #111 0%, #000 70%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 20px;
+            background: #FFD700;
+            color: #000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #FFD700;
+        }
+
+        .download-btn:hover {
+            background: transparent;
+            color: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        .download-btn img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #FFD700;
+        }
+
+        /* Phone Mockup */
+        .hero-phone {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .phone-stack {
+            position: relative;
+        }
+
+        .phone {
+            width: 280px;
+            height: 580px;
+            background: linear-gradient(145deg, #222, #000);
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 3px solid #333;
+            position: relative;
+        }
+
+        .phone-main {
+            z-index: 3;
+        }
+
+        .phone-bg1 {
+            position: absolute;
+            top: 30px;
+            right: -50px;
+            transform: rotate(15deg);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .phone-bg2 {
+            position: absolute;
+            top: 50px;
+            left: -60px;
+            transform: rotate(-20deg);
+            opacity: 0.5;
+            z-index: 2;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .app-content {
+            flex: 1;
+            padding: 0 20px 20px;
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+        }
+
+        .app-header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+            margin-bottom: 20px;
+        }
+
+        .app-logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .workout-preview {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .workout-title {
+            color: #FFD700;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .workout-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .stat {
+            color: #ccc;
+            font-size: 12px;
+        }
+
+        .stat-value {
+            display: block;
+            color: #FFD700;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .exercise-list {
+            margin-top: 20px;
+        }
+
+        .exercise {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .exercise-name {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #0a0a0a;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: #FFD700;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            text-align: center;
+            background: #000;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            color: #ccc;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #FFD700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #111 0%, #000 100%);
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .cta .download-buttons {
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            background: #0a0a0a;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .phone-bg1, .phone-bg2 {
+                display: none;
+            }
+
+            .phone {
+                width: 240px;
+                height: 480px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features h2, .cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Atlas</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Build Strength, Build Community</h1>
+                    <p>The ultimate fitness social network. Track your workouts, share your progress, and connect with a community that motivates you to push your limits every day.</p>
+                    
+                    <div class="download-buttons">
+                        <a href="#" class="download-btn">
+                            📱 Download on iOS
+                        </a>
+                        <a href="#" class="download-btn">
+                            📱 Download on Play Store  
+                        </a>
+                    </div>
+                    
+                    <div class="rating">
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span>4.8/5 • 50K+ downloads</span>
+                    </div>
+                </div>
+                
+                <div class="hero-phone">
+                    <div class="phone-stack">
+                        <div class="phone phone-bg1">
+                            <div class="phone-screen">
+                                <div class="status-bar">
+                                    <span>9:41</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="app-content">
+                                    <div class="app-header">
+                                        <div class="app-logo">Atlas</div>
+                                    </div>
+                                    <div class="workout-preview">
+                                        <div class="workout-title">Social Feed</div>
+                                        <div style="color: #ccc; font-size: 14px;">Connect with fitness enthusiasts worldwide</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="phone phone-bg2">
+                            <div class="phone-screen">
+                                <div class="status-bar">
+                                    <span>9:41</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="app-content">
+                                    <div class="app-header">
+                                        <div class="app-logo">Atlas</div>
+                                    </div>
+                                    <div class="workout-preview">
+                                        <div class="workout-title">Progress Analytics</div>
+                                        <div style="color: #ccc; font-size: 14px;">Visualize your strength gains</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="phone phone-main">
+                            <div class="phone-screen">
+                                <div class="status-bar">
+                                    <span>9:41</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="app-content">
+                                    <div class="app-header">
+                                        <div class="app-logo">Atlas</div>
+                                    </div>
+                                    <div class="workout-preview">
+                                        <div class="workout-title">Push Day</div>
+                                        <div class="workout-stats">
+                                            <div class="stat">
+                                                <span class="stat-value">45m</span>
+                                                <span>Duration</span>
+                                            </div>
+                                            <div class="stat">
+                                                <span class="stat-value">8</span>
+                                                <span>Exercises</span>
+                                            </div>
+                                            <div class="stat">
+                                                <span class="stat-value">PR!</span>
+                                                <span>💪</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="exercise-list">
+                                        <div class="exercise">
+                                            <span class="exercise-name">Bench Press</span>
+                                            <span>185 lbs</span>
+                                        </div>
+                                        <div class="exercise">
+                                            <span class="exercise-name">Incline Press</span>
+                                            <span>155 lbs</span>
+                                        </div>
+                                        <div class="exercise">
+                                            <span class="exercise-name">Shoulder Press</span>
+                                            <span>135 lbs</span>
+                                        </div>
+                                        <div class="exercise">
+                                            <span class="exercise-name">Tricep Dips</span>
+                                            <span>Body Weight</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Everything You Need to Dominate Your Workouts</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Smart Workout Tracking</h3>
+                    <p>Log every rep, set, and PR with our intelligent tracking system that learns your patterns and suggests optimizations.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💪</span>
+                    <h3>Custom Workout Builder</h3>
+                    <p>Create personalized routines tailored to your goals. Mix and match exercises and build the perfect workout plan.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🤝</span>
+                    <h3>Fitness Community</h3>
+                    <p>Connect with like-minded athletes. Share posts, celebrate achievements, and motivate each other.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3>Social Feed</h3>
+                    <p>Share your workout highlights and progress photos. Like and comment on friends' posts to build community.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏆</span>
+                    <h3>Achievement System</h3>
+                    <p>Unlock badges, track personal records, and celebrate milestones. Every workout brings you closer to your goals.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>Progress Analytics</h3>
+                    <p>Visualize your fitness journey with detailed charts and insights. See your improvement over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 style="color: white; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Trusted by Athletes Worldwide</h2>
+            <p style="color: #ccc; font-size: 1.2rem;">Join thousands of fitness enthusiasts who've made Atlas their go-to workout companion</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">500K+</span>
+                    <span>Active Athletes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10M+</span>
+                    <span>Workouts Logged</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2M+</span>
+                    <span>Posts Shared</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.8★</span>
+                    <span>App Store Rating</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="download">
+        <div class="container">
+            <h2>Start Your Fitness Journey Today</h2>
+            <p>Download Atlas and join the community that's transforming how people approach fitness.</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn">
+                    📱 Download on iOS
+                </a>
+                <a href="#" class="download-btn">
+                    📱 Download on Play Store
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Atlas. Build Strength, Build Community.</p>
+        </div>
+    </footer>
+</body>
+</html>
