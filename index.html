@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atlas - Social Fitness Community & Workout Tracker for Weight Lifters</title>
     <link rel="icon" type="image/png" href="assets/letter.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -30,7 +31,6 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         nav {
@@ -106,6 +106,8 @@
             position: relative;
             min-width: 200px;
             text-align: left;
+            margin-bottom: 16px;
+            overflow: visible;
         }
 
         .rotating-text span {
@@ -119,6 +121,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            overflow: visible;
         }
 
         .rotating-text span:nth-child(1) {
@@ -230,8 +233,8 @@
 
         /* Features Section */
         .features {
-            padding: 100px 0;
             background: #000000;
+            padding-bottom: 200px;
         }
 
         .features h2 {
@@ -296,43 +299,39 @@
         .feature-list li {
             color: #D7D7D7;
             font-size: 1rem;
-            position: relative;
-            padding-left: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
         }
 
-        .feature-list li:before {
-            content: "✓";
+        .feature-list li .material-icons {
             color: #FFFFFF;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
             font-size: 0.8rem;
             width: 1.4rem;
             height: 1.4rem;
-            background: #DAA520;
+            background: #121212;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            top: 0.1rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
         }
 
         .feature-image {
             flex: 1;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(218, 165, 32, 0.6);
-            font-size: 0.9rem;
-            text-align: center;
             flex-shrink: 0;
         }
 
-        .feature-image:after {
-            content: "Sport Image";
+        .feature-image img {
+            width: 80%;
+            height: 65%;
+            object-fit: cover;
+            border-radius: 12px;
+            object-position: top;
         }
 
         /* Stats Section */
@@ -418,23 +417,14 @@
         }
 
         .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(218, 165, 32, 0.1);
-            border: 1px solid rgba(218, 165, 32, 0.3);
-            border-radius: 8px;
+            display: inline-block;
             text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s;
         }
 
-        .social-links a:hover {
-            background: rgba(218, 165, 32, 0.2);
-            border-color: #DAA520;
-            transform: translateY(-2px);
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            filter: invert(1) brightness(0.7);
         }
 
         .footer-links h4 {
@@ -575,6 +565,34 @@
     </style>
 </head>
 <body>
+    <!-- Modal for account verification -->
+    <div id="verification-modal" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;">
+        <div style="background:#000000;border:1px solid rgba(255,255,255,0.1);padding:2.5rem 2rem 2rem 2rem;border-radius:16px;max-width:90vw;width:600px;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center;position:relative;">
+            <div style="width:60px;height:60px;background:#121212;border-radius:50%;margin:0 auto 1.5rem auto;display:flex;align-items:center;justify-content:center;">
+                <span class="material-icons" style="color:#fff;font-size:2rem;">check</span>
+            </div>
+            <h2 style="color:#DAA520;margin-bottom:1rem;font-size:2rem;">Verified!</h2>
+            <p style="color:#fff;font-size:1.1rem;margin-bottom:2rem;">Your account has been verified.<br>You can now log in to the Atlas app.</p>
+            <button id="close-modal-btn" style="background:#DAA520;color:#fff;font-weight:700;padding:0.7rem 2.2rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;transition:background 0.2s;">Ok</button>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var hash = window.location.hash;
+        var search = window.location.search;
+        if (hash.includes('access_token') && (window.location.href.includes('&type=signup') || window.location.href.includes('?type=signup'))) {
+            var modal = document.getElementById('verification-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                document.getElementById('close-modal-btn').onclick = function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                };
+            }
+        }
+    })();
+    </script>
     <!-- Header -->
     <header>
         <nav class="container">
@@ -607,10 +625,10 @@
                         </a>
                     </div>
                     
-                    <div class="rating">
+                    <!-- <div class="rating">
                         <span class="stars">⭐⭐⭐⭐⭐</span>
                         <span>4.8/5 • 50K+ downloads</span>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div class="hero-phone">
@@ -635,16 +653,16 @@
                 <div class="feature-card">
                     <div class="feature-content">
                                                 <div class="feature-image">
-                            <!-- Sport image placeholder -->
+                            <img src="assets/live_workout-portrait.png" alt="Live Workout Screen">
                         </div>
                         <div class="feature-text">
                             <h3>Log your workouts</h3>
                             <p>Track every rep, set, and exercise with precision. Build your personal workout database.</p>
                             <ul class="feature-list">
-                                <li>Intelligent exercise database</li>
-                                <li>Custom workout templates</li>
-                                <li>Real-time progress tracking</li>
-                                <li>Automatic rest timer</li>
+                                <li><span class="material-icons">check</span>Intelligent exercise database</li>
+                                <li><span class="material-icons">check</span>Custom workout templates</li>
+                                <li><span class="material-icons">check</span>Real-time progress tracking</li>
+                                <li><span class="material-icons">check</span>Automatic rest timer</li>
                             </ul>
                         </div>
                     </div>
@@ -655,60 +673,34 @@
                             <h3>Connect with friends</h3>
                             <p>Build meaningful connections with fellow lifters. Create a supportive fitness community.</p>
                             <ul class="feature-list">
-                                <li>Follow friends and trainers</li>
-                                <li>Share workout achievements</li>
-                                <li>Challenge and motivate others</li>
-                                <li>Join fitness groups</li>
+                                <li><span class="material-icons">check</span>Follow friends and trainers</li>
+                                <li><span class="material-icons">check</span>Share workout achievements</li>
+                                <li><span class="material-icons">check</span>Challenge and motivate others</li>
+                                <li><span class="material-icons">check</span>Join fitness groups</li>
                             </ul>
                         </div>
                                                 <div class="feature-image">
-                            <!-- Sport image placeholder -->
+                            <img src="assets/profile-portrait.png" alt="Profile Screen">
                         </div>
                     </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-content">
                                                 <div class="feature-image">
-                            <!-- Sport image placeholder -->
+                            <img src="assets/workout_details_2-portrait.png" alt="Workout Details Screen">
                         </div>
                         <div class="feature-text">
                             <h3>Track your progress</h3>
                             <p>Visualize your fitness journey with detailed analytics. See your strength gains over time.</p>
                             <ul class="feature-list">
-                                <li>Personal record tracking</li>
-                                <li>Visual progress charts</li>
-                                <li>Strength gain analytics</li>
-                                <li>Milestone celebrations</li>
+                                <li><span class="material-icons">check</span>Personal record tracking</li>
+                                <li><span class="material-icons">check</span>Visual progress charts</li>
+                                <li><span class="material-icons">check</span>Strength gain analytics</li>
+                                <li><span class="material-icons">check</span>Milestone celebrations</li>
                             </ul>
                         </div>
 
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <h2 style="color: #FFFFFF; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">Trusted by Athletes Worldwide</h2>
-            <p style="color: #D7D7D7; font-size: 1.2rem;">Join thousands of fitness enthusiasts who've made Atlas their go-to workout companion</p>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">500K+</span>
-                    <span>Active Athletes</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">10M+</span>
-                    <span>Workouts Logged</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">2M+</span>
-                    <span>Posts Shared</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">4.8★</span>
-                    <span>App Store Rating</span>
                 </div>
             </div>
         </div>
@@ -737,11 +729,24 @@
                 <div class="footer-brand">
                     <img src="assets/word.png" alt="Atlas" class="footer-logo">
                     <div class="social-links">
-                        <a href="#" aria-label="Instagram">📷</a>
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="Facebook">📘</a>
-                        <a href="#" aria-label="YouTube">📺</a>
-                        <a href="#" aria-label="TikTok">🎵</a>
+                        <a href="https://youtube.com/@atlasfitnessapp" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/youtube.svg" alt="YouTube" class="social-icon">
+                        </a>
+                        <a href="https://instagram.com/atlasfitness.app" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/instagram.svg" alt="Instagram" class="social-icon">
+                        </a>
+                        <a href="https://tiktok.com/@atlasfitness.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/tiktok.svg" alt="TikTok" class="social-icon">
+                        </a>
+                        <a href="https://x.com/atlasfitnessapp" aria-label="X" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/x-twitter.svg" alt="X" class="social-icon">
+                        </a>
+                        <a href="https://threads.net/@atlasfitness.app" aria-label="Threads" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/threads.svg" alt="Threads" class="social-icon">
+                        </a>
+                        <a href="https://bsky.app/profile/atlasfitness.bsky.social" aria-label="Bluesky" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/bluesky.svg" alt="Bluesky" class="social-icon">
+                        </a>
                     </div>
                 </div>
                 <div class="footer-links">
