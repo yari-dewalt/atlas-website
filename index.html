@@ -94,6 +94,10 @@
             color: white;
         }
 
+        .mobile-titles {
+            display: none;
+        }
+
         .hero-text h1 .rotating-text span {
             background: linear-gradient(45deg, #DAA520, #B8860B);
             -webkit-background-clip: text;
@@ -488,40 +492,106 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
+            .container {
+                padding: 0 15px;
             }
 
-            .hero-text h1 {
-                font-size: 2.5rem;
+            /* Header Mobile */
+            .logo img {
+                height: 70px;
             }
 
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .phone-bg {
-                display: none;
-            }
-
-            .phone-stack {
-                width: 240px;
-                height: auto;
-            }
-
-            .phone-main {
-                width: 240px;
+            nav {
+                padding: 0.75rem 0;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .features h2, .cta h2 {
-                font-size: 2rem;
+            /* Hero Mobile */
+            .hero {
+                padding-top: 40px;
+                padding-bottom: 60px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                display: none;
+            }
+
+            .hero-text .mobile-titles {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                font-size: 2.8rem;
+                font-weight: 600;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+                gap: 0;
+            }
+
+            .hero-text .mobile-titles .line1,
+            .hero-text .mobile-titles .line2 {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .hero-text .mobile-titles .build {
+                color: white;
+            }
+
+            .hero-text .mobile-titles .strength,
+            .hero-text .mobile-titles .community {
+                background: linear-gradient(45deg, #DAA520, #B8860B);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                padding: 0 10px;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .download-btn img {
+                height: 50px;
+            }
+
+            .hero-phone {
+                display: none;
+            }
+
+            /* Features Mobile */
+            .features {
+                padding-bottom: 80px;
+            }
+
+            .features h2 {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+                padding: 0 15px;
+            }
+
+            .feature-card {
+                height: auto;
+                padding: 0;
+                margin-bottom: 3rem;
             }
 
             .feature-content {
@@ -532,14 +602,66 @@
 
             .feature-text {
                 text-align: center;
+                padding: 0 15px;
             }
 
-            .feature-card {
-                padding: 2rem 1.5rem;
+            .feature-card h3 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .feature-card p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-list {
+                text-align: left;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .feature-list li {
+                font-size: 0.95rem;
             }
 
             .feature-image {
+                order: -1;
                 align-self: center;
+                margin-bottom: 1rem;
+            }
+
+            .feature-image img {
+                width: 280px;
+                height: 400px;
+                max-width: 90vw;
+            }
+
+            /* CTA Mobile */
+            .cta {
+                padding: 60px 0;
+            }
+
+            .cta h2 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+                padding: 0 15px;
+            }
+
+            .cta p {
+                font-size: 1.1rem;
+                padding: 0 15px;
+                margin-bottom: 2rem;
+            }
+
+            .cta .download-buttons {
+                justify-content: center;
+                gap: 0.75rem;
+            }
+
+            /* Footer Mobile */
+            footer {
+                padding: 40px 0 20px;
             }
 
             .footer-content {
@@ -553,13 +675,72 @@
                 align-items: center;
             }
 
+            .footer-logo {
+                height: 80px;
+                margin-top: -20px;
+            }
+
             .social-links {
                 justify-content: center;
+                gap: 1.5rem;
+            }
+
+            .social-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .footer-links h4 {
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links ul {
+                gap: 0.3rem;
+            }
+
+            .footer-links a {
+                font-size: 0.9rem;
+            }
+
+            .footer-bottom {
+                padding-top: 1.5rem;
+                gap: 0.75rem;
             }
 
             .legal-links {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .footer-bottom p {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+
+            .rotating-text {
+                min-width: 140px;
+            }
+
+            .phone-stack,
+            .phone-main {
+                width: 240px;
+            }
+
+            .feature-image img {
+                width: 240px;
+                height: 360px;
+            }
+
+            .feature-card h3 {
+                font-size: 1.9rem;
             }
         }
     </style>
@@ -614,6 +795,16 @@
                         <span>Strength</span>
                         <span>Community</span>
                     </span></h1>
+                    <div class="mobile-titles">
+                        <div class="line1">
+                            <span class="build">Build</span>
+                            <span class="strength">Strength</span>
+                        </div>
+                        <div class="line2">
+                            <span class="build">Build</span>
+                            <span class="community">Community</span>
+                        </div>
+                    </div>
                     <p>The ultimate fitness social network. Track your workouts, share your progress, and connect with a community that motivates you to push your limits every day.</p>
                     
                     <div class="download-buttons">
@@ -753,7 +944,7 @@
                     <h4>Company</h4>
                     <ul>
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                         <li><a href="#features">Features</a></li>
                     </ul>
                 </div>
